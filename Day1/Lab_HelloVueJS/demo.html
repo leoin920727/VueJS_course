@@ -28,27 +28,63 @@
 <body>
 
     <div id="app1">
-        {{ message }}
+        <input v-model="message"><br>
+        {{ message }}<br />
+        <button v-on:click="reverseMessage">Reverse Message</button>
     </div>
     <div id="app2">
         <span v-bind:class="color">
             請將滑鼠移到本段文字上方
         </span>
     </div>
+    <div id="app3">
+        <span v-if="seen">Now you see me</span>
+    </div>
+    <div id="app4">
+        <ol>
+            <li v-for="(apple,index) in todoList" v-on:click="checkOut(index)">
+                {{ apple.text }}
+            </li>
+        </ol>
+    </div>
 
     <script>
-        const app1 = new Vue({
+        var app1 = new Vue({
             el: "#app1",
             data: {
-                message: () => {
-                    return 4 % 2
+                message: 'Hello Vue!'
+            },
+            methods: {
+                reverseMessage: function () {
+                    this.message = this.message.split('').reverse().join('');
                 }
             }
-        })
+        });
         var app2 = new Vue({
             el: '#app2',
             data: {
                 class: app1
+            }
+        });
+        var app3 = new Vue({
+            el: '#app3',
+            data: {
+                seen: true
+            }
+        });
+        var app4 = new Vue({
+            el: '#app4',
+            data: {
+                todoList: [
+                    { text: 'Learn JavaScript' },
+                    { text: 'Learn Vue' },
+                    { text: 'Build something awesome' }
+                ]
+            },
+            methods: {
+                checkOut: function (order) {
+                    console.log(this.todoList[order].text)
+                }
             }
         });
     </script>

@@ -70,7 +70,7 @@ Lab: 以 Vue CLI 建立 Vue.js 專案
 <template>
   <header>
     <h1>{{ headerMessage }}</h1>
-    <hr>
+    <hr>    
   </header>
 </template>
 
